@@ -1,0 +1,29 @@
+<div class="side-bar-container">
+  <div class="heading">Document Analyzer</div>
+  <div class="upload-documents">
+    <p>Upload your pdfs here and Click on Process</p>
+    <div class="upload-container">
+      <input
+        type="file"
+        multiple
+        accept=".pdf"
+        (change)="handleFiles($event)"
+        hidden
+        #fileUpload
+      />
+      <div class="file-upload" (click)="uploadFileClick()">Upload File</div>
+      <div class="pdf-shower" *ngIf="filesUploaded.length === 0">
+        <span>No files selected...</span>
+      </div>
+      <div class="pdf-name-container" *ngIf="filesUploaded.length > 0">
+        <div class="name" *ngFor="let item of filesUploaded">
+          {{ item.name }}
+        </div>
+      </div>
+      <div class="btn-container">
+        <div class="btn">Process</div>
+      </div>
+    </div>
+  </div>
+  <div class="fragment">&copy; Venura Warnasooriya</div>
+</div>

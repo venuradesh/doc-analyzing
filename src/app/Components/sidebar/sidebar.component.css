@@ -1,0 +1,89 @@
+.side-bar-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.side-bar-container .heading {
+  color: var(--heading-txt);
+  font-weight: var(--w4);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.upload-documents {
+  height: 400px;
+  width: 100%;
+}
+
+.upload-documents p {
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.upload-documents .upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-documents .upload-container .file-upload {
+  width: 200px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--heading-txt);
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 1px solid var(--heading-txt);
+}
+
+.upload-container .pdf-shower {
+  margin-bottom: 20px;
+}
+
+.upload-container .pdf-shower span {
+  font-size: 0.8rem;
+}
+
+.upload-container .btn-container {
+  /* background-color: var(--heading-txt); */
+  width: 200px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--heading-txt);
+}
+
+.upload-container .btn-container:hover {
+  background-color: var(--heading-txt);
+}
+
+.fragment {
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.pdf-name-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.pdf-name-container .name {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
