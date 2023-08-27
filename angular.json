@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "doc-analysis-app"
+    }
+  },
+  "defaultProject": "doc-analysis-app",
+  "cli": {
+    "analytics": "87095d04-af05-455a-a42b-8286126947e0"
+  }
 }

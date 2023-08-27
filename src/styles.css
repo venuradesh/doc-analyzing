@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --bg-clr: #011126;
+  --heading-txt: #fe9600;
+  --sub-heading-txt: #ffc501;
+  --normal-txt: #f8f1e9;
+  --btn-clr: #005bc5;
+  --btn-clr-alt: #012677;
+  --btn-danger: #fc5956;
+  --btn-danger-alt: #c93e4f;
+
+  /*typography*/
+  --font-family: "Poppins", sans-serif;
+  --w1: 300;
+  --w2: 400;
+  --w3: 500;
+  --w4: 600;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--w2);
+  background-color: var(--bg-clr);
+  color: var(--normal-txt);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
