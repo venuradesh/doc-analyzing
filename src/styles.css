@@ -10,6 +10,10 @@
   --btn-danger: #fc5956;
   --btn-danger-alt: #c93e4f;
 
+  /* chat colors */
+  --chat-user: #0a0b0d;
+  --chat-agent: #4a738c;
+
   /*typography*/
   --font-family: "Poppins", sans-serif;
   --w1: 300;
@@ -34,4 +38,14 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 3px;
+  background-color: var(--heading-txt);
+  border-radius: 50px;
 }
