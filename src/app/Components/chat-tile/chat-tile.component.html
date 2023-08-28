@@ -1,1 +1,12 @@
-<p>chat-tile works!</p>
+<div class="chat-tile-container user" *ngIf="chatUser === 'user'">
+  <div class="msg-content">{{ chatContent.content }}</div>
+  <div class="profile">
+    <img src="../../../assets/icons/user.png" alt="user" />
+  </div>
+</div>
+<div class="chat-tile-container agent" *ngIf="chatUser === 'assistant'">
+  <div class="profile">
+    <img src="../../../assets/icons/agent.png" alt="user" />
+  </div>
+  <div class="msg-content">{{ chatContent.content }}</div>
+</div>
