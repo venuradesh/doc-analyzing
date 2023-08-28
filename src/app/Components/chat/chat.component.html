@@ -1,2 +1,17 @@
-<p>chat works!</p>
-<app-chat-tile></app-chat-tile>
+<div class="chat-container">
+  <div class="header-container">
+    <div class="heading">Chat with Multiple PDFs 🚀</div>
+    <div class="placeholder">
+      Ask any question about the Documents that you've processed
+    </div>
+    <div class="input-container">
+      <input type="text" name="query" #queryInput />
+      <img src="../../../assets/icons/send.png" alt="send" />
+    </div>
+  </div>
+  <div class="chat-wrapper">
+    <div class="chat-item" *ngFor="let chat of chatContent">
+      <app-chat-tile [chatContent]="chat"></app-chat-tile>
+    </div>
+  </div>
+</div>
