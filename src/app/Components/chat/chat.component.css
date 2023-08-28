@@ -58,7 +58,7 @@
 
 .chat-container .chat-wrapper {
   width: 100%;
-  height: max-content;
+  height: 100%;
   margin-top: 40px;
   overflow-y: overlay;
   display: flex;
@@ -68,4 +68,5 @@
 
 .chat-wrapper .chat-item {
   width: 100%;
+  position: relative;
 }
