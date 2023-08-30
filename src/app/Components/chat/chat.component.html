@@ -5,17 +5,44 @@
       Ask any question about the Documents that you've processed
     </div>
     <div class="input-container">
-      <input type="text" name="query" #queryInput />
+      <input
+        type="text"
+        name="query"
+        #queryInput
+        (keypress)="onEnterPress($event)"
+      />
       <img
         src="../../../assets/icons/send.png"
         alt="send"
         (click)="onSubmitHandler()"
       />
     </div>
+    <div class="loading-container" *ngIf="loading">
+      <div class="loading">
+        <span class="dot1"></span>
+        <span class="dot2"></span>
+        <span class="dot3"></span>
+      </div>
+    </div>
   </div>
-  <div class="chat-wrapper">
+  <div class="chat-wrapper" *ngIf="chatContent.length > 0">
     <div class="chat-item" *ngFor="let chat of chatContent">
-      <app-chat-tile [chatContent]="chat"></app-chat-tile>
+      <div class="chat-tile user" *ngIf="chat.role === 'user'">
+        <div class="msg">{{ chat.content }}</div>
+        <img src="../../../assets/icons/user.png" alt="user" />
+      </div>
+      <div class="chat-tile agent" *ngIf="chat.role === 'assistant'">
+        <img src="../../../assets/icons/agent.png" alt="agent" />
+        <div class="msg">{{ chat.content }}</div>
+      </div>
+    </div>
+    <!-- <app-chat-tile [chatContent]="chat"></app-chat-tile> -->
+  </div>
+  <div class="chat-guide" *ngIf="chatContent.length === 0">
+    <div class="step">1. First Upload the Files you need to analyse</div>
+    <div class="step">2. Click on Process Button</div>
+    <div class="step">
+      3. After Processing completed you can start chat with PDFs
     </div>
   </div>
 </div>

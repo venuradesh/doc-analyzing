@@ -20,8 +20,8 @@
           {{ item.name }}
         </div>
       </div>
-      <div class="btn-container">
-        <div class="btn" (click)="handleProcessClick()">Process</div>
+      <div class="btn-container" (click)="handleProcessClick()">
+        <div class="btn">Process</div>
       </div>
       <div class="loading-container" *ngIf="processed">
         <div class="msg" *ngIf="error === ''">

@@ -16,10 +16,6 @@ export class ApiCallsService {
   }
 
   postQuery(query: String) {
-    this.http
-      .post('http://localhost:5000/user-query', query)
-      .subscribe((response) => {
-        console.log(response);
-      });
+    return this.http.post('http://localhost:5000/user-query', query);
   }
 }
