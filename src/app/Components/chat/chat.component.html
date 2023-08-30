@@ -6,7 +6,11 @@
     </div>
     <div class="input-container">
       <input type="text" name="query" #queryInput />
-      <img src="../../../assets/icons/send.png" alt="send" />
+      <img
+        src="../../../assets/icons/send.png"
+        alt="send"
+        (click)="onSubmitHandler()"
+      />
     </div>
   </div>
   <div class="chat-wrapper">
