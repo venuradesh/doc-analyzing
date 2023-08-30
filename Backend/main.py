@@ -95,16 +95,30 @@ def load_files():
 def process_query():
     # converting the byte to string using codecs
     query = codecs.decode(request.get_data(), 'utf-8')
-    querydata = {
-        'data': 'hello',
-    }
 
-    if coversational_chain != None:
-        print('within')
+    global coversational_chain
+    if (coversational_chain):
+        response = coversational_chain({'question': query})
+        chat_history = response['chat_history']
+        response_chat = []
+        for i, msg in enumerate(chat_history):
+            if (i % 2 == 0):
+                response_chat.append({'role': 'user', 'content': msg.content})
+            else:
+                response_chat.append(
+                    {'role': 'assistant', 'content': msg.content})
+
+        chain_response = {
+            'data': response_chat,
+            'error': False
+        }
+        return jsonify(chain_response), 200
     else:
-        print('not within')
-
-    return jsonify(querydata), 200
+        chain_response = {
+            'data': None,
+            'error': True
+        }
+        return jsonify(chain_response), 404
 
 
 if (__name__ == '__main__'):
