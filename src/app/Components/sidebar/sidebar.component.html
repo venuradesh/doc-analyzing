@@ -21,7 +21,20 @@
         </div>
       </div>
       <div class="btn-container">
-        <div class="btn">Process</div>
+        <div class="btn" (click)="handleProcessClick()">Process</div>
+      </div>
+      <div class="loading-container" *ngIf="processed">
+        <div class="msg" *ngIf="error === ''">
+          The Documents are processed successfully
+        </div>
+        <div class="msg error" *ngIf="error !== ''">{{ error }}</div>
+      </div>
+      <div class="loading-container" *ngIf="loading">
+        <div class="loading">
+          <span class="dot1"></span>
+          <span class="dot2"></span>
+          <span class="dot3"></span>
+        </div>
       </div>
     </div>
   </div>

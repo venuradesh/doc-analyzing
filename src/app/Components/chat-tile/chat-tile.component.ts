@@ -12,7 +12,6 @@ export class ChatTileComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.chatContent);
     this.chatUser = this.chatContent.role;
   }
 }

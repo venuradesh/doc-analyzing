@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ApiCallsService } from 'src/app/Services/api-calls.service';
 
 @Component({
   selector: 'app-chat',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
+  @ViewChild('queryInput') inputItem: ElementRef;
+
+  error: String = '';
+
   chatContent: any[] = [
     {
       role: 'user',
@@ -39,7 +44,16 @@ export class ChatComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private apiCallService: ApiCallsService) {}
 
   ngOnInit(): void {}
+
+  onSubmitHandler() {
+    if (this.inputItem.nativeElement.value === '') {
+      this.error = 'Enter a query first';
+    } else {
+      const query = this.inputItem.nativeElement.value;
+      const response = this.apiCallService.postQuery(query);
+    }
+  }
 }

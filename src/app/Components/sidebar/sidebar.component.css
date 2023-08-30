@@ -87,3 +87,55 @@
   font-size: 0.8rem;
   font-weight: 100;
 }
+
+.loading-container {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.msg {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--heading-txt);
+}
+
+.loading-container .error {
+  color: var(--btn-danger);
+}
+
+.loading-container .loading {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+.loading-container .loading span {
+  width: 10px;
+  height: 10px;
+  background-color: var(--heading-txt);
+  border-radius: 50%;
+  animation: loading 0.6s ease-in-out infinite alternate;
+}
+
+.loading-container .loading .dot2 {
+  animation-delay: 0.6s;
+}
+
+.loading-container .loading .dot3 {
+  animation-delay: 0.9s;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
