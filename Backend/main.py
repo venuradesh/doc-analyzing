@@ -9,7 +9,12 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 import codecs
+import cv2
+import pytesseract
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from PIL import Image
 
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -55,15 +60,49 @@ def get_conversational_chain(vectore_store):
     return conversation_chain
 
 
+def image_to_textCaption(url):
+    image = Image.open(url).convert('RGB')
+    modelName = 'Salesforce/blip-image-captioning-large'
+    device = 'cpu'
+    processor = BlipProcessor.from_pretrained(modelName)
+    model = BlipForConditionalGeneration.from_pretrained(modelName).to(device)
+
+    inputs = processor(image, return_tensors='pt').to(device)
+    output = model.generate(**inputs, max_new_tokens=20)
+
+    caption = processor.decode(output[0], skip_special_tokens=True)
+
+    return caption
+
+
 @app.route('/load-files', methods=['POST'])
 def load_files():
     data = request.files.getlist('file')
     whole_text = ''
+    # for grammer checking and the meaning catching
+    # my_language_tool = language_tool_python.LanguageTool('en-US')
     for file in data:
         pdf_reader = PdfReader(file)
         for page in pdf_reader.pages:
             text = page.extract_text()
+            images = page.images
             whole_text += text
+            if (len(images) > 0):
+                for image in images:
+                    extension = image.name.split('.')[-1]
+                    imageName = "Image.{extension}".format(extension=extension)
+                    with open(imageName, 'wb') as f:
+                        f.write(image.data)
+                    imgCV = cv2.imread(filename=imageName)
+                    imgText = pytesseract.image_to_string(image=imgCV)
+
+                    if (imgText):
+                        whole_text += "image description -> {imageName} has the meaning of {imgText}\n".format(
+                            imageName=imageName, imgText=imgText)
+                    else:
+                        caption = image_to_textCaption(imageName)
+                        whole_text += "image caption -> {caption} and this image do not contain any word. this is just the caption of things that it contains.".format(
+                            caption=caption)
 
     # array containing the chunks of the text
     text_chunks = get_chunks_text(whole_text)
@@ -71,7 +110,7 @@ def load_files():
     # creating the vector store
     vector_store = get_vector_store(text_chunks)
     global coversational_chain
-    coversational_chain = get_conversational_chain(vector_store)
+    coversational_chain = get_conversational_chain(vectore_store=vector_store)
 
     if coversational_chain:
         userdata = {
